@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "777418184984",
+    "project_id": "dirty-fitness",
+    "storage_bucket": "dirty-fitness.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777418184984:android:4b1648806e385f31f8a66d",
+        "android_client_info": {
+          "package_name": "com.example.dirty_fitness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777418184984-c19a5mjrpb7355fqeri7a2tt21v6k8kq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDajzTWV3TE7pcHi5i5Ux7YmLJnYB0T440"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777418184984-c19a5mjrpb7355fqeri7a2tt21v6k8kq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "777418184984-51jp6a9stje6b70ikeff39m5b3aorls4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutter.dirtyFitness"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
