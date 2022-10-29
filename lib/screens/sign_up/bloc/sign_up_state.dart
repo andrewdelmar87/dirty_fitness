@@ -1,28 +1,28 @@
-part of 'sign_up_bloc.dart';
+// part of 'sign_up_bloc.dart';
 
-@immutable
-abstract class SignUpState {}
+// @immutable
+// abstract class SignUpState {}
 
-class SignUpInitial extends SignUpState {}
+// class SignUpInitial extends SignUpState {}
 
-class SignUpButtonEnableChangedState extends SignUpState {
-  final bool isEnabled;
+// class SignUpButtonEnableChangedState extends SignUpState {
+//   final bool isEnabled;
 
-  SignUpButtonEnableChangedState({
-    required this.isEnabled,
-  });
-}
+//   SignUpButtonEnableChangedState({
+//     required this.isEnabled,
+//   });
+// }
 
-class ShowErrorState extends SignUpState {}
+// class ShowErrorState extends SignUpState {}
 
-class ErrorState extends SignUpState {
-  final String message;
+// class ErrorState extends SignUpState {
+//   final String message;
 
-  ErrorState({required this.message});
-}
+//   ErrorState({required this.message});
+// }
 
-class NextTabBarPageState extends SignUpState {}
+// class NextTabBarPageState extends SignUpState {}
 
-class NextSignInPageState extends SignUpState {}
+// class NextSignInPageState extends SignUpState {}
 
-class LoadingState extends SignUpState {}
+// class LoadingState extends SignUpState {}

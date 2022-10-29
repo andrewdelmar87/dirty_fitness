@@ -34,9 +34,9 @@ dependencies:
   flutter_bloc: ^7.0.1
 
   # Firebase
-  firebase_core: ^1.4.0
-  firebase_auth: ^3.0.1
-  firebase_storage: ^10.0.1
+  firebase_core: ^2.1.1
+  # firebase_auth: ^3.0.1
+  # firebase_storage: ^10.0.1
 
   #Indicators
   dots_indicator: ^2.0.0
