@@ -39,19 +39,21 @@ class OnboardingContent extends StatelessWidget {
     );
   }
 
+  //Displays DotsIndicator & CircleIndicator
   Widget _createStatic(OnboardingBloc bloc) {
     return Column(
       children: [
         const SizedBox(
           height: 30,
         ),
+        //DotsIndicator
         BlocBuilder<OnboardingBloc, OnboardingState>(
           buildWhen: (_, currState) => currState is PageChangedState,
           builder: (context, state) {
             return DotsIndicator(
               dotsCount: 3,
               position: bloc.pageIndex.toDouble(),
-              decorator: DotsDecorator(
+              decorator: const DotsDecorator(
                 color: Colors.grey,
                 activeColor: ColorConstants.primaryColor,
               ),
@@ -59,27 +61,29 @@ class OnboardingContent extends StatelessWidget {
           },
         ),
         const Spacer(),
+        //CircleIndicator
         BlocBuilder<OnboardingBloc, OnboardingState>(
           buildWhen: (_, currState) => currState is PageChangedState,
           builder: (context, state) {
             final percent = _getPercent(bloc.pageIndex);
             return TweenAnimationBuilder<double>(
                 tween: Tween<double>(begin: 0, end: percent),
-                duration: Duration(seconds: 1),
+                duration: const Duration(seconds: 1),
                 builder: (context, value, _) => CircularPercentIndicator(
                       radius: 110,
                       backgroundColor: ColorConstants.primaryColor,
                       progressColor: Colors.white,
                       percent: 1 - value,
                       center: Material(
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         color: ColorConstants.primaryColor,
                         child: RawMaterialButton(
-                          shape: CircleBorder(),
+                          shape: const CircleBorder(),
+                          //Changes page to pageIndex+1
                           onPressed: () {
                             bloc.add(PageChangedEvent());
                           },
-                          child: Padding(
+                          child: const Padding(
                             padding: EdgeInsets.all(24.0),
                             child: Icon(
                               Icons.east_rounded,
@@ -97,12 +101,13 @@ class OnboardingContent extends StatelessWidget {
     );
   }
 
+  //Page 1 = 25%, page 2 = 65% etc.
   double _getPercent(int pageIndex) {
     switch (pageIndex) {
       case 0:
-        return 0.25;
+        return 0.33;
       case 1:
-        return 0.65;
+        return 0.66;
       case 2:
         return 1;
       default:
