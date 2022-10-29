@@ -35,8 +35,8 @@ dependencies:
 
   # Firebase
   firebase_core: ^2.1.1
-  # firebase_auth: ^3.0.1
-  # firebase_storage: ^10.0.1
+  firebase_auth: ^4.1.0
+  firebase_storage: ^11.0.3
 
   #Indicators
   dots_indicator: ^2.0.0

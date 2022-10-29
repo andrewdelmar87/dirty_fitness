@@ -12,7 +12,17 @@ class SignUpContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: null,
-      child: Container(),
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: ColorConstants.white,
+        child: Stack(children: [
+          _createMainData(context),
+          BlocBuilder<SignUpBloc, SignUpState>(
+            builder: (context, state) => Container(),
+          ),
+        ]),
+      ),
     );
   }
 
