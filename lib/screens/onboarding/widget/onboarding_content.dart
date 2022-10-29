@@ -51,7 +51,8 @@ class OnboardingContent extends StatelessWidget {
           buildWhen: (_, currState) => currState is PageChangedState,
           builder: (context, state) {
             return DotsIndicator(
-              dotsCount: 3,
+              dotsCount: 4,
+              //Accesses pageIndex in bloc
               position: bloc.pageIndex.toDouble(),
               decorator: const DotsDecorator(
                 color: Colors.grey,
@@ -79,7 +80,7 @@ class OnboardingContent extends StatelessWidget {
                         color: ColorConstants.primaryColor,
                         child: RawMaterialButton(
                           shape: const CircleBorder(),
-                          //Changes page to pageIndex+1
+                          //Changes page to pageIndex+1 w/ onPressed
                           onPressed: () {
                             bloc.add(PageChangedEvent());
                           },
@@ -101,14 +102,16 @@ class OnboardingContent extends StatelessWidget {
     );
   }
 
-  //Page 1 = 25%, page 2 = 65% etc.
+  //Page 1 = 25%, page 2 = 50% etc.
   double _getPercent(int pageIndex) {
     switch (pageIndex) {
       case 0:
-        return 0.33;
+        return 0.25;
       case 1:
-        return 0.66;
+        return 0.50;
       case 2:
+        return 0.75;
+      case 3:
         return 1;
       default:
         return 0;

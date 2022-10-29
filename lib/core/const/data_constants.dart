@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../../screens/onboarding/widget/onboarding_tile.dart';
 import '../const/text_constants.dart';
 import '../const/path_constants.dart';
@@ -13,7 +11,7 @@ class DataConstants {
       mainText: TextConstants.onboarding1Description,
     ),
     OnboardingTile(
-      title: TextConstants.onboardingTitle,
+      title: TextConstants.onboarding2Title,
       imagePath: PathConstants.onboarding2,
       mainText: TextConstants.onboarding2Description,
     ),
@@ -21,6 +19,11 @@ class DataConstants {
       title: TextConstants.onboarding3Title,
       imagePath: PathConstants.onboarding3,
       mainText: TextConstants.onboarding3Description,
+    ),
+    OnboardingTile(
+      title: TextConstants.onboarding4Title,
+      imagePath: PathConstants.onboarding3,
+      mainText: TextConstants.onboarding4Description,
     )
   ];
 }

@@ -18,17 +18,19 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         yield NextScreenState();
         return;
       }
+      //Adds 1 to page index
       pageIndex += 1;
-
+      //Changes page based on page index.
       pageController.animateToPage(
         pageIndex,
         duration: const Duration(milliseconds: 500),
         curve: Curves.ease,
       );
-
+      //onClick
       yield PageChangedState(counter: pageIndex);
     } else if (event is PageSwipedEvent) {
       pageIndex = event.index;
+      //onPageChanged (onSwiped)
       yield PageChangedState(counter: pageIndex);
     }
   }

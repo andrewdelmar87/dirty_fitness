@@ -4,7 +4,7 @@ part of 'onboarding_bloc.dart';
 abstract class OnboardingState {}
 
 class OnboardingInitial extends OnboardingState {}
-
+//Page state
 class PageChangedState extends OnboardingState {
   final int counter;
 
@@ -12,5 +12,5 @@ class PageChangedState extends OnboardingState {
     required this.counter,
   });
 }
-
+//Screen state
 class NextScreenState extends OnboardingState {}
