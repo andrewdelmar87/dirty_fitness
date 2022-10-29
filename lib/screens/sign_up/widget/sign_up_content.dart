@@ -1,9 +1,10 @@
-import 'package:dirty_fitness/core/const/text_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/const/color_constants.dart';
 import '../bloc/sign_up_bloc.dart';
+import '../../../core/const/color_constants.dart';
+import '../../../core/const/text_constants.dart';
+import '../../common_widgets/fitness_button.dart';
 
 class SignUpContent extends StatelessWidget {
   const SignUpContent({super.key});
@@ -37,7 +38,7 @@ class SignUpContent extends StatelessWidget {
             // const SizedBox(height: 50),
             // _createForm(),
             const SizedBox(height: 40),
-            _createSignUpButton(),
+            _createSignUpButton(context),
             // Spacer(),
             const SizedBox(height: 40),
             _createHaveAccountText(),
@@ -64,10 +65,23 @@ class SignUpContent extends StatelessWidget {
     return Container();
   }
 
-  //Creates sign up button
-  Widget _createSignUpButton() {
-    // final bloc = BlocProvider.of<SignUpBloc>(context);
-    return Container();
+  //Builds Fitness Button based on bloc
+  Widget _createSignUpButton(BuildContext context) {
+    final bloc = BlocProvider.of<SignUpBloc>(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: BlocBuilder(builder: (context, state) {
+        return FitnessButton(
+          title: TextConstants.signUp,
+          isEnabled:
+              state is SignUpButtonEnableChangedState ? state.isEnabled : false,
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            bloc.add(SignUpTappedEvent());
+          },
+        );
+      }),
+    );
   }
 
   Widget _createHaveAccountText() {
