@@ -5,6 +5,8 @@ import '../bloc/sign_up_bloc.dart';
 import '../../../core/const/color_constants.dart';
 import '../../../core/const/text_constants.dart';
 import '../../common_widgets/fitness_button.dart';
+import '../../common_widgets/fitness_text_field.dart';
+import '../../../core/service/validation_service.dart';
 
 class SignUpContent extends StatelessWidget {
   const SignUpContent({super.key});
@@ -36,7 +38,7 @@ class SignUpContent extends StatelessWidget {
             const SizedBox(height: 20),
             _createTitle(),
             // const SizedBox(height: 50),
-            // _createForm(),
+            _createForm(context),
             const SizedBox(height: 40),
             _createSignUpButton(context),
             // Spacer(),
@@ -60,9 +62,46 @@ class SignUpContent extends StatelessWidget {
     );
   }
 
-  //Contains common input fields
-  Widget _createForm() {
-    return Container();
+  Widget _createForm(BuildContext context) {
+    final bloc = BlocProvider.of<SignUpBloc>(context);
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (_, currState) => currState is ShowErrorState,
+      builder: (context, state) {
+        return Column(
+          children: [
+            FitnessTextField(
+              title: TextConstants.username,
+              placeholder: TextConstants.userNamePlaceholder,
+              controller: bloc.userNameController,
+              textInputAction: TextInputAction.next,
+              onTextChanged: () {
+                bloc.add(OnTextChangedEvent());
+              },
+              errorText: TextConstants.passwordErrorText,
+              isError: state is ShowErrorState
+                  ? !ValidationService.password(bloc.passwordController.text)
+                  : false,
+            ),
+            const SizedBox(height: 20),
+            FitnessTextField(
+              title: TextConstants.confirmPassword,
+              placeholder: TextConstants.confirmPasswordPlaceholder,
+              obscureText: true,
+              isError: state is ShowErrorState
+                  ? !ValidationService.confirmPassword(
+                      bloc.passwordController.text,
+                      bloc.confirmPasswordController.text)
+                  : false,
+              controller: bloc.confirmPasswordController,
+              errorText: TextConstants.confirmPasswordErrorText,
+              onTextChanged: () {
+                bloc.add(OnTextChangedEvent());
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   //Builds Fitness Button based on bloc

@@ -34,7 +34,6 @@ class OnboardingContent extends StatelessWidget {
       controller: controller,
       children: DataConstants.onboardingTiles,
       onPageChanged: (index) {
-        print('PageSwipedEvent index ${index}');
         bloc.add(PageSwipedEvent(index: index));
       },
     );
@@ -51,7 +50,6 @@ class OnboardingContent extends StatelessWidget {
         BlocBuilder<OnboardingBloc, OnboardingState>(
           buildWhen: (_, currState) => currState is PageChangedState,
           builder: (context, state) {
-            print('pageIndex ${bloc.pageIndex}');
             return DotsIndicator(
               dotsCount: 4,
               //Accesses pageIndex in bloc
@@ -84,7 +82,6 @@ class OnboardingContent extends StatelessWidget {
                           shape: const CircleBorder(),
                           //Changes page to pageIndex+1 w/ onPressed
                           onPressed: () {
-                            // print('${}');
                             bloc.add(PageChangedEvent());
                           },
                           child: const Padding(
