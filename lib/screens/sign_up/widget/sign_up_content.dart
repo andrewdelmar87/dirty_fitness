@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,9 @@ class SignUpContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: null,
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
       child: Container(
         width: double.infinity,
         height: double.infinity,
@@ -74,13 +77,43 @@ class SignUpContent extends StatelessWidget {
               placeholder: TextConstants.userNamePlaceholder,
               controller: bloc.userNameController,
               textInputAction: TextInputAction.next,
+              errorText: TextConstants.usernameErrorText,
+              isError: state is ShowErrorState
+                  ? !ValidationService.username(bloc.userNameController.text)
+                  : false,
               onTextChanged: () {
                 bloc.add(OnTextChangedEvent());
               },
-              errorText: TextConstants.passwordErrorText,
+            ),
+            const SizedBox(height: 20),
+            FitnessTextField(
+              title: TextConstants.email,
+              placeholder: TextConstants.emailPlaceholder,
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.emailAddress,
+              controller: bloc.emailController,
+              errorText: TextConstants.emailErrorText,
+              isError: state is ShowErrorState
+                  ? !ValidationService.email(bloc.emailController.text)
+                  : false,
+              onTextChanged: () {
+                bloc.add(OnTextChangedEvent());
+              },
+            ),
+            const SizedBox(height: 20),
+            FitnessTextField(
+              title: TextConstants.password,
+              placeholder: TextConstants.passwordPlaceholder,
+              obscureText: true,
               isError: state is ShowErrorState
                   ? !ValidationService.password(bloc.passwordController.text)
                   : false,
+              textInputAction: TextInputAction.next,
+              controller: bloc.passwordController,
+              errorText: TextConstants.passwordErrorText,
+              onTextChanged: () {
+                bloc.add(OnTextChangedEvent());
+              },
             ),
             const SizedBox(height: 20),
             FitnessTextField(
@@ -128,8 +161,30 @@ class SignUpContent extends StatelessWidget {
     );
   }
 
-  Widget _createHaveAccountText() {
-    // final bloc = BlocProvider.of<SignUpBloc>(context);
-    return Container();
+  Widget _createHaveAccountText(BuildContext context) {
+    final bloc = BlocProvider.of<SignUpBloc>(context);
+    return RichText(
+      text: TextSpan(
+        text: TextConstants.alreadyHaveAccount,
+        style: const TextStyle(
+          color: ColorConstants.textBlack,
+          fontSize: 18,
+        ),
+        children: [
+          TextSpan(
+            text: " ${TextConstants.signIn}",
+            style: const TextStyle(
+              color: ColorConstants.primaryColor,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                bloc.add(SignInTappedEvent());
+              },
+          ),
+        ],
+      ),
+    );
   }
 }
