@@ -13,8 +13,9 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
 
   @override
   Stream<OnboardingState> mapEventToState(OnboardingEvent event) async* {
+    //If SignUpButton pressed, add 1 to pageIndex, which changes page to SignUpScreen (@ pageIndex = 2)
     if (event is PageChangedEvent) {
-      if (pageIndex == 2) {
+      if (pageIndex == 3) {
         yield NextScreenState();
         return;
       }
@@ -26,11 +27,11 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.ease,
       );
-      //onClick
+
       yield PageChangedState(counter: pageIndex);
     } else if (event is PageSwipedEvent) {
       pageIndex = event.index;
-      //onPageChanged (onSwiped)
+
       yield PageChangedState(counter: pageIndex);
     }
   }

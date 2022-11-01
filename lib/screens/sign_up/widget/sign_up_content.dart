@@ -41,7 +41,7 @@ class SignUpContent extends StatelessWidget {
             _createSignUpButton(context),
             // Spacer(),
             const SizedBox(height: 40),
-            _createHaveAccountText(),
+            // _createHaveAccountText(),
             const SizedBox(height: 30),
           ],
         ),
@@ -70,17 +70,22 @@ class SignUpContent extends StatelessWidget {
     final bloc = BlocProvider.of<SignUpBloc>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: BlocBuilder(builder: (context, state) {
-        return FitnessButton(
-          title: TextConstants.signUp,
-          isEnabled:
-              state is SignUpButtonEnableChangedState ? state.isEnabled : false,
-          onTap: () {
-            FocusScope.of(context).unfocus();
-            bloc.add(SignUpTappedEvent());
-          },
-        );
-      }),
+      child: BlocBuilder<SignUpBloc, SignUpState>(
+        buildWhen: (_, currState) =>
+            currState is SignUpButtonEnableChangedState,
+        builder: (context, state) {
+          return FitnessButton(
+            title: TextConstants.signUp,
+            isEnabled: state is SignUpButtonEnableChangedState
+                ? state.isEnabled
+                : false,
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              bloc.add(SignUpTappedEvent());
+            },
+          );
+        },
+      ),
     );
   }
 
