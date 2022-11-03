@@ -22,20 +22,20 @@ class SignUpPage extends StatelessWidget {
           return SignUpContent();
         },
         buildWhen: (_, currState) => currState is SignUpInitial,
-        listener: (_, currState) =>
+        listenWhen: (_, currState) =>
             currState is NextTabBarPageState ||
             currState is NextSignInPageState ||
             currState is ErrorState,
-        listenWhen: (context, state) {
-          if (state is NextTabBarPageState) {
-            // Navigator.of(context).pushReplacement(
-            //     MaterialPageRoute(builder: (_) => TabBarPage()));
-          } else if (state is NextSignInPageState) {
-            // Navigator.of(context).pushReplacement(
-            //     MaterialPageRoute(builder: (_) => SignInPage()));
-          } else if (state is ErrorState) {
-            // ScaffoldMessenger.of(context)
-            //     .showSnackBar(SnackBar(content: Text(state.message)));
+        listener: (context, currState) {
+          if (currState is NextTabBarPageState) {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => TabBarPage()));
+          } else if (currState is NextSignInPageState) {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => SignInPage()));
+          } else if (currState is ErrorState) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(currState.message)));
           }
           throw {
             Container(

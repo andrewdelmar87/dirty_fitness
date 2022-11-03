@@ -58,7 +58,7 @@ class SignUpContent extends StatelessWidget {
             _createSignUpButton(context),
             // Spacer(),
             const SizedBox(height: 40),
-            // _createHaveAccountText(),
+            _createHaveAccountText(context),
             const SizedBox(height: 30),
           ],
         ),
@@ -67,7 +67,7 @@ class SignUpContent extends StatelessWidget {
   }
 
   Widget _createTitle() {
-    return Text(
+    return const Text(
       TextConstants.signUp,
       style: TextStyle(
         color: ColorConstants.textBlack,
