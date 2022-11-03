@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/sign_up_bloc.dart';
 import '../widget/sign_up_content.dart';
+import '../../tab_bar/page/tab_bar_page.dart';
+import '../../sign_in/page/sign_in_page.dart';
 
 class SignUpPage extends StatelessWidget {
   @override
